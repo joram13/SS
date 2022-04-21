@@ -1,0 +1,32 @@
+tempfile sheetsFile
+copy "https://docs.google.com/spreadsheets/d/1QZkZpkGaVLAeXTOT9tq4Vvrjb7C1DrtQOuFPGVXDvEE/export?format=xlsx" `sheetsFile', replace
+import excel `sheetsFile', clear firstrow
+
+graph twoway (line gdp year if uk==0) (line gdp year if uk==1), legend(label(1 "GDP Germany") label(2 "GDP UK"))
+
+regress uk##post1uk
+regress uk##post2uk
+regress uk##post3uk
+
+regress uk##post1ukf1
+regress uk##post2ukf1
+regress uk##post3ukf1
+
+regress ukf2##post1ukf2
+regress ukf2##post2ukf2
+regress ukf2##post3ukf2
+
+graph twoway (line gdp year if ch==0) (line gdp year if ch==1), legend(label(1 "GDP Philippines") label(2 "GDP China"))
+
+
+regress ch##post1ch
+regress ch##post2ch
+regress ch##post3ch
+
+regress ch##post1chf1
+regress ch##post2chf1
+regress ch##post3chf1
+
+regress chf2##post1chf2
+regress chf2##post2chf2
+regress chf2##post3chf2
